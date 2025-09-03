@@ -10,3 +10,4 @@ router.post('/user', user.create);
 router.get('/user', (ctx)=>md.middle(ctx, ()=> user.read(ctx)));
 router.post('/login', user.login);
 router.get('/logout', user.logout);
+router.get('/validate', (ctx)=>md.middle(ctx, ()=> user.validateLogin(ctx)) );

@@ -60,11 +60,10 @@ export default class UserController {
     try {
       const usuario = (request as any).usuario
 
-      const verify = jwt.verify(usuario, env.get("APP_KEY"),(err:any, decoded?: string | jwt.JwtPayload | undefined)=>{
-        if(err){
-          return response.header('Set-Cookie', `${env.get('COOKIE_NAME')} =`)
-        }
-      })
+      const log = (request as any).user
+      console.log(log)
+
+      return response.status(200).json({ data:log })
     } catch (e) {
       return response.status(500).json({ message: 'error', error: e.message })
     }
@@ -78,7 +77,7 @@ export default class UserController {
   }
 }
 
-const createtoken = async (data:any) => {
+const createtoken = async (data: any) => {
   const tok = jwt.sign(
     { id: data.id, nombre: data.nombre, email: data.email },
     env.get('APP_KEY'),

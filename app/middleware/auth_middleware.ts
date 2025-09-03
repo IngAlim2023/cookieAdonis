@@ -10,6 +10,9 @@ export class AuthMiddleware {
         const tokenDirty = cookies
 
         const nuevaCadena = tokenDirty?.split('auth=').join('');
+
+        (request as any).user = nuevaCadena
+
         console.log(nuevaCadena)
         await next();
 
